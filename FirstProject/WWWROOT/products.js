@@ -3,8 +3,10 @@
     getCategories();
 }
 getProducts = async () => {
-    const url = "Api/Product";
-    const res = await fetch(url);
+  
+    //const url = "Api/products";
+    //const res = await fetch(url);
+   const res = await fetch(`https://localhost:44363/api/products`);
     console.log(res);
     if (!res.ok)
         alert("Error! Try later please!");
@@ -14,7 +16,7 @@ getProducts = async () => {
     }
     else {
         const data = await res.json();
-        console.log(data);
+       // console.log(data);
         sessionStorage.setItem("products", JSON.stringify(data));
         drawProducts(data);
     }
@@ -31,7 +33,7 @@ getCategories = async () => {
     }
     else {
         const data = await res.json();
-        console.log(data);
+       // console.log(data);
         fillProductsInCategory(data);
         drawCategories(data);
     }
@@ -42,13 +44,13 @@ fillProductsInCategory = (data) => {
     console.log(products);
     console.log(data);
     for (var category = 0; category < data.length; category++) {
-        for (var product = 0; product < products.length; product++) {
+        for (var product = 0; product < products.length(); product++) {
             if (products[product].categoryId == data[category].id) {
                 data[category].products.push(products[product]);
             }
         }
     }
-    console.log(data);
+   // console.log(data);
 }
 drawProducts = (data) => {
     document.getElementById("counter").innerText = data.length;
@@ -63,10 +65,10 @@ drawProduct = (product) => {
     var temp = document.getElementById("temp-card");
     var clone = temp.content.cloneNode(true);
     //console.log(product.name);
-    clone.querySelector("h1").innerText = product.name;
+    clone.querySelector("h1").innerText = product.productName;
     clone.querySelector(".price").innerText = product.price;
     clone.querySelector(".description").innerText = product.description;
-    clone.querySelector("img").src = "/images/" + product.imageUrl;
+    clone.querySelector("img").src = "/images/"+ product.imageUrl;
     document.getElementById("PoductList").appendChild(clone);
 }
 drawCategories = (data) => {
@@ -78,7 +80,7 @@ drawCategory = (category) => {
     //console.log(category);
     var temp = document.getElementById("temp-category");
     var clone = temp.content.cloneNode(true);
-    clone.querySelector(".OptionName").innerText = category.name;
+    clone.querySelector(".OptionName").innerText = category.categoryName;
     clone.querySelector(".Count").innerText = `(${category.products.length})`;
     clone.querySelector(".opt").value = category.id;
     document.getElementById("categoryList").appendChild(clone);
