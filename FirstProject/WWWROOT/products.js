@@ -16,7 +16,6 @@ getProducts = async () => {
     }
     else {
         const data = await res.json();
-       // console.log(data);
         sessionStorage.setItem("products", JSON.stringify(data));
         drawProducts(data);
     }
