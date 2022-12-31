@@ -1,6 +1,7 @@
 ﻿load = async () => {
     await getProducts();
     await getCategories();
+    //AA
 }
 getProducts = async () => {
   
