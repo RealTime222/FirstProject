@@ -1,6 +1,6 @@
-﻿load = () => {
-    getProducts();
-    getCategories();
+﻿load = async () => {
+    await getProducts();
+    await getCategories();
 }
 getProducts = async () => {
   
@@ -18,6 +18,7 @@ getProducts = async () => {
         const data = await res.json();
         sessionStorage.setItem("products", JSON.stringify(data));
         drawProducts(data);
+        alert("hellow");
     }
 }
 getCategories = async () => {
@@ -31,10 +32,10 @@ getCategories = async () => {
         return;
     }
     else {
-        const data = await res.json();
-       // console.log(data);
-        fillProductsInCategory(data);
-        drawCategories(data);
+        const d = await res.json();
+        console.log(d);
+       fillProductsInCategory(d);
+        drawCategories(d);
     }
 }
 fillProductsInCategory = (data) => {
@@ -43,7 +44,7 @@ fillProductsInCategory = (data) => {
     console.log(products);
     console.log(data);
     for (var category = 0; category < data.length; category++) {
-        for (var product = 0; product < products.length(); product++) {
+        for (var product = 0; product < products.length; product++) {
             if (products[product].categoryId == data[category].id) {
                 data[category].products.push(products[product]);
             }
@@ -121,10 +122,7 @@ filterProducts = async () => {
 }
 
 removeProducts = () => {
-    //document.getElementById("PoductList").remove();
-    //var div1 = document.createElement("div");
-    //div1.setAttribute("id", "PoductList");
-    //document.body.appendChild(div1);
+    
 
     var cards = document.getElementsByClassName("card");
     console.log(cards);
