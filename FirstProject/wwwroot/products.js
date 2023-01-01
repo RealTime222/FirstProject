@@ -101,11 +101,12 @@ filterProducts = async () => {
     var categoryIds = "";
     for (var i = 0; i < categoryList.length; i++) {
         if (categoryList[i].checked) {
-            categoryIds += `&categoryIds=${categoryList[i].value}`;
+            categoryIds += `CategoryId=${categoryList[i].value}`;
             console.log(categoryIds);
         }
     }
-    const url = `Api/Product/?name=${name}&price_from=${minPrice}&price_to=${maxPrice}${categoryIds}&start=${start}&limit=${limit}&direction=${direction}&orderBy=${orderBy}`;
+   
+    const url = `Api/Product/?${categoryIds}& name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}`;
     const res = await fetch(url);
     console.log(res);
     if (!res.ok)
