@@ -8,7 +8,7 @@ getProducts = async () => {
     //const url = "Api/products";
     //const res = await fetch(url);
    const res = await fetch(`https://localhost:44363/api/products`);
-    console.log(res);
+    
     if (!res.ok)
         alert("Error! Try later please!");
     else if (res.status == 204) {
@@ -34,7 +34,7 @@ getCategories = async () => {
     }
     else {
         const d = await res.json();
-        console.log(d);
+       
        fillProductsInCategory(d);
         drawCategories(d);
     }
