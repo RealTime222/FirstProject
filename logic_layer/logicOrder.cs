@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace logic_layer
 {
-    public class logicOrderItem : IlogicOrder
+    public class logicOrder : IlogicOrder
     {
         private readonly IdataOrderItem _Idata;
-        public logicOrderItem(IdataOrderItem idata)
+        public logicOrder(IdataOrderItem idata)
         {
             _Idata = idata;
         }
 
-        public async Task<OrderItem> AddOrder(OrderItem order)
+        public async Task<Order> AddOrder(Order order)
         {
-            OrderItem orderRes = await _Idata.AddOrder(order);
+            Order orderRes = await _Idata.AddOrder(order);
             if (orderRes != null)
                 return orderRes;
             return null;
