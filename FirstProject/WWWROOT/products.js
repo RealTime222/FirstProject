@@ -83,7 +83,7 @@ drawCategory = (category) => {
     var clone = temp.content.cloneNode(true);
     clone.querySelector(".OptionName").innerText = category.categoryName;
     clone.querySelector(".Count").innerText = `(${category.products.length})`;
-    clone.querySelector(".opt").value = category.id;
+    clone.querySelector(".opt").value = category.categoryId;
     document.getElementById("categoryList").appendChild(clone);
 
 }
@@ -101,11 +101,13 @@ filterProducts = async () => {
     var categoryIds = "";
     for (var i = 0; i < categoryList.length; i++) {
         if (categoryList[i].checked) {
-            categoryIds += `&categoryIds=${categoryList[i].value}`;
+            categoryIds += `&CategoryId=${categoryList[i].value}`;
             console.log(categoryIds);
         }
     }
-    const url = `Api/Product/?name=${name}&price_from=${minPrice}&price_to=${maxPrice}${categoryIds}&start=${start}&limit=${limit}&direction=${direction}&orderBy=${orderBy}`;
+   
+    const url = `Api/products/? name=${name}&${categoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}`;
+
     const res = await fetch(url);
     console.log(res);
     if (!res.ok)
