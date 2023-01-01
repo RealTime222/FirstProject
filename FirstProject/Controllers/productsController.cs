@@ -23,7 +23,7 @@ namespace FirstProject.Controllers
         // GET: api/<productsController>
         [HttpGet]
         public async Task<List<Product>> Get(
-            [FromQuery] int[]? CategoryId,[FromQuery] string? name, 
+            [FromQuery] string? name, [FromQuery] int[]? CategoryId,
             [FromQuery] int? minPrice, [FromQuery] int? maxPrice,
             [FromQuery] int? start, [FromQuery] int? end, 
             [FromQuery] string? orderBy="price", [FromQuery] string? dir= "ASC")
