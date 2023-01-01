@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace logic_layer
 {
-    public class logicOrderItem : IlogicOrderItem
+    public class logicOrderItem : IlogicOrder
     {
         private readonly IdataOrderItem _Idata;
         public logicOrderItem(IdataOrderItem idata)

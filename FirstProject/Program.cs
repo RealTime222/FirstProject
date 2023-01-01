@@ -15,7 +15,7 @@ builder.Services.AddScoped<IlogicProduct, logicProduct>();
 builder.Services.AddScoped<IlogicCategory, logicCategory>();
 builder.Services.AddScoped<IdataCategory, dataCategory>();
 builder.Services.AddScoped<IdataOrderItem, dataOrderItem>();
-builder.Services.AddScoped<IlogicOrderItem, logicOrderItem>();
+builder.Services.AddScoped<IlogicOrder, logicOrderItem>();
 
 
 
