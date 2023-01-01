@@ -25,7 +25,7 @@ getProducts = async () => {
 getCategories = async () => {
     const url = "Api/Category";
     const res = await fetch(url);
-    console.log(res + "llllll");
+    
     if (!res.ok)
         alert("Error! Try later please!");
     else if (res.status == 204) {
