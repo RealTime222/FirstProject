@@ -89,9 +89,10 @@ drawCategory = (category) => {
 }
 filterProducts = async () => {
     var name = document.getElementById("nameSearch").value;
-    var minPrice = document.getElementById("minPrice").value;
+  
+    var minPrice = parseInt( document.getElementById("minPrice").value);
     console.log(minPrice);
-    var maxPrice = document.getElementById("maxPrice").value;
+    var maxPrice = parseInt(document.getElementById("maxPrice").value);
     var categoryList = document.getElementsByClassName("opt");
     var start = 1;
     var limit = 20;
