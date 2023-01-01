@@ -2,8 +2,8 @@
 
 namespace logic_layer
 {
-    public interface IlogicOrderItem
+    public interface IlogicOrder
     {
-        Task<OrderItem> AddOrder(OrderItem order);
+        Task<Order> AddOrder(Order order);
     }
 }
