@@ -106,7 +106,7 @@ filterProducts = async () => {
         }
     }
    
-    const url = `Api/products/? name=${name}$&{categoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}`;
+    const url = `Api/products/? name=${name}&${categoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}`;
 
     const res = await fetch(url);
     console.log(res);
