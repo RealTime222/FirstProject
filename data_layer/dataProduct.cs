@@ -22,9 +22,10 @@ namespace data_layer
         {
             
                 var query =  _WebApiProjectContext.Products.Where(product => (name == null ? (true) : (product.ProductName.Contains(name)))
+                 && ((maxPrice == null) ? (true) : (product.Price <= maxPrice))
                   && ((minPrice == null) ? (true) : (product.Price >= minPrice))
                  && (CategoryId.Length == 0) ? (true) : (CategoryId.Contains(product.CategoryId))
-                  && ((maxPrice == null) ? (true) : (product.Price <= maxPrice))).OrderBy(product => orderBy);
+                 ).OrderBy(product => orderBy);
                 Console.WriteLine(query);
 
                 List<Product> products = await query.ToListAsync();
