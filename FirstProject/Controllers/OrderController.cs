@@ -9,12 +9,12 @@ namespace FirstProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderItemController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly IlogicOrderItem _Iservice;
+        private readonly IlogicOrder _Iservice;
 
 
-        public OrderItemController(IlogicOrderItem service)
+        public OrderController(IlogicOrder service)
         {
             _Iservice = service;
         }
@@ -34,9 +34,9 @@ namespace FirstProject.Controllers
 
         // POST api/<orderItem>
         [HttpPost]
-        public async Task<OrderItem> Post([FromBody] OrderItem order)
+        public async Task<Order> Post([FromBody] Order order)
         {
-            OrderItem orderRes = await _Iservice.AddOrder(order);
+            Order orderRes = await _Iservice.AddOrder(order);
             return orderRes;
         }
 
