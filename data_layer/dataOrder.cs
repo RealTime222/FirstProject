@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace data_layer
 {
-    public class dataOrderItem : IdataOrderItem
+    public class dataOrder : IdataOrder
     {
         WebApiProjectContext _WebApiProjectContext;
-        public dataOrderItem(WebApiProjectContext context)
+        public dataOrder(WebApiProjectContext context)
         {
             _WebApiProjectContext = context;
         }
-        public async Task<OrderItem> AddOrder(OrderItem order)
+        public async Task<Order> AddOrder(Order order)
         {
-            await _WebApiProjectContext.OrderItems.AddAsync(order);
+            //a
+            await _WebApiProjectContext.Orders.AddAsync(order);
             await _WebApiProjectContext.SaveChangesAsync();
             return order;
         }

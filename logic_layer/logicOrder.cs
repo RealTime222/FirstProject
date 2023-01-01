@@ -10,8 +10,8 @@ namespace logic_layer
 {
     public class logicOrder : IlogicOrder
     {
-        private readonly IdataOrderItem _Idata;
-        public logicOrder(IdataOrderItem idata)
+        private readonly IdataOrder _Idata;
+        public logicOrder(IdataOrder idata)
         {
             _Idata = idata;
         }
