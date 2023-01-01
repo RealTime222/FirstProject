@@ -89,7 +89,7 @@ drawCategory = (category) => {
 }
 filterProducts = async () => {
     var name = document.getElementById("nameSearch").value;
-  
+
     var minPrice = parseInt( document.getElementById("minPrice").value);
     console.log(minPrice);
     var maxPrice = parseInt(document.getElementById("maxPrice").value);
@@ -107,7 +107,7 @@ filterProducts = async () => {
         }
     }
    
-    const url = `Api/products/? name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}&${categoryIds}`;
+    const url = `Api/products/? name=${name}${categoryIds}&minPrice=${minPrice}&maxPrice=${maxPrice}&start=${start}&end=${limit}&dir=${direction}&orderBy=${orderBy}`;
 
     const res = await fetch(url);
     console.log(res);
