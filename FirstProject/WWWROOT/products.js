@@ -143,15 +143,15 @@ addToCart = (id) => {
     let counter = 0;
     for (let i = 0; i < products.length; i++) {
         if (products[i].productId == id) {
-            console.log(products[i])
+            
             if (sessionStorage.getItem("selectedProducts")) {
                 const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
-                console.log(allSelectedProducts1)
+              
                 allSelectedProducts1.push(products[i]);
-                console.log(allSelectedProducts1)
+                
                 counter = allSelectedProducts1.length;
                 sessionStorage.setItem("selectedProducts", JSON.stringify(allSelectedProducts1));
-                console.log(allSelectedProducts1)
+             
             }
             else {
                 let allSelectedProducts = []
