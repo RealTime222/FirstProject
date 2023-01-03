@@ -12,8 +12,9 @@ drawSelectedProducts = (selectedProducts) => {
     }
 }
 drawSelectedProduct = (selectedProduct) => {
-    const temp = document.getElementById("temp-row");
-    const clone = temp.content.cloneNode(true);
+    
+    var temp = document.getElementById("temp-row");
+    var clone = temp.content.cloneNode(true);
     let imageurl = "/images/" + selectedProduct.imageurl;
     const stringImageUrl = JSON.stringify(imageurl);
     console.log(JSON.stringify(imageurl));
