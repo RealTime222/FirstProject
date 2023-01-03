@@ -3,7 +3,7 @@
     const selectedProducts = JSON.parse(selectedProductsJson);
      drawSelectedProducts(selectedProducts)
      totalPriceFunc(selectedProducts);
-    console.log(selectedProducts);
+     console.log(selectedProducts);
 }
 drawSelectedProducts =  (selectedProducts) => {
     console.log(selectedProducts)
@@ -21,6 +21,7 @@ drawSelectedProduct = (selectedProduct) => {
     clone.querySelector(".image").style.backgroundImage = `url(${ stringImageUrl })`;
     clone.querySelector(".itemName").innerText = selectedProduct.productName;
     clone.querySelector(".itemNumber").innerText = selectedProduct.price;
+    clone.querySelector("button").setAttribute("value", selectedProduct.productId);
     document.getElementsByTagName("tbody")[0].appendChild(clone);
 }
 totalPriceFunc = async (selectedProducts) => {
@@ -84,5 +85,26 @@ placeOrder = async () => {
     alert("the order complited!!!!!!!!!!!");
 
 }
+
+
+deleteProduct = (id) => {
+    var newArr = [];
+    const productsJson = sessionStorage.getItem("products");
+    const products = JSON.parse(productsJson);
+    const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
+    for (let i = 0; i < allSelectedProducts1.length; i++) {
+        if (allSelectedProducts1[i].productId != id) {
+            newArr.push(allSelectedProducts1[i]);
+        }
+    }
+    
+    sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
+
+        
+    
+
+    load();
+}
+
 
 //document.addEventListener("load", load());
