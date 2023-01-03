@@ -12,15 +12,15 @@ drawSelectedProducts =  (selectedProducts) => {
     }
 }
 drawSelectedProduct = (selectedProduct) => {
-
+   
     const temp = document.getElementById("temp-row");
     const clone = temp.content.cloneNode(true);
-    let imageurl = "/images/" + selectedProduct.imageurl;
-    const stringImageUrl = JSON.stringify(imageurl);
-    console.log(JSON.stringify(imageurl));
+    let imageUrl = "/images/" + selectedProduct.imageUrl;
+    const stringImageUrl = JSON.stringify(imageUrl);
+    console.log(JSON.stringify(imageUrl));
     clone.querySelector(".image").style.backgroundImage = `url(${ stringImageUrl })`;
     clone.querySelector(".itemName").innerText = selectedProduct.productName;
-    clone.querySelector(".itemNumber").innerText = selectedProduct.p;
+    clone.querySelector(".itemNumber").innerText = selectedProduct.price;
     document.getElementsByTagName("tbody")[0].appendChild(clone);
 }
 totalPriceFunc = async (selectedProducts) => {
@@ -34,8 +34,9 @@ totalPriceFunc = async (selectedProducts) => {
 }
 placeOrder = async () => {
     let price = document.getElementById("totalAmount").innerText;
-    userJson = sessionStorage.getItem("user");
-    userParse = JSON.parse(userJson);
+    let user = JSON.parse(sessionStorage.getItem("details"))
+    let userParse = user[0].firstName;
+    
     let userId = userParse.id;
     orderItems = [];
     orderItemsJson = sessionStorage.getItem("selectedProducts");
@@ -46,7 +47,7 @@ placeOrder = async () => {
     for (let i = 0; i < orderItemsParse.length; i++) {
         let amount = 0;
         for (let j = 0; j < orderItemsParse.length; j++) {
-            if (orderItemsParse[i].id == orderItemsParse[j].id) {
+            if (orderItemsParse[i].id == orderItemsParse[j].ProductId) {
                 amount++;
             }
         }
