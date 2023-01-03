@@ -1,8 +1,8 @@
-﻿load = () => {
+﻿load = async() => {
     const selectedProductsJson = sessionStorage.getItem("selectedProducts");
     const selectedProducts = JSON.parse(selectedProductsJson);
-    drawSelectedProducts(selectedProducts)
-    totalPriceFunc(selectedProducts);
+    await drawSelectedProducts(selectedProducts)
+    await totalPriceFunc(selectedProducts);
     console.log(selectedProducts);
 }
 drawSelectedProducts = (selectedProducts) => {
@@ -79,3 +79,5 @@ placeOrder = async () => {
     alert("the order complited");
 
 }
+
+document.addEventListener("load", load());
