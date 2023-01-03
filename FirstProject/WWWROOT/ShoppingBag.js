@@ -1,19 +1,19 @@
-﻿load = async() => {
+﻿load = () => {
     const selectedProductsJson = sessionStorage.getItem("selectedProducts");
     const selectedProducts = JSON.parse(selectedProductsJson);
-    await drawSelectedProducts(selectedProducts)
-    await totalPriceFunc(selectedProducts);
+     drawSelectedProducts(selectedProducts)
+     totalPriceFunc(selectedProducts);
     console.log(selectedProducts);
 }
-drawSelectedProducts = (selectedProducts) => {
+drawSelectedProducts =  (selectedProducts) => {
     console.log(selectedProducts)
     for (let i = 0; i < selectedProducts.length; i++) {
-        drawSelectedProduct(selectedProducts[i]);
+         drawSelectedProduct(selectedProducts[i]);
     }
 }
-drawSelectedProduct = (selectedProduct) => {
-    
-    var temp = document.getElementById("temp-row");
+drawSelectedProduct =  (selectedProduct) => {
+  
+    var temp =  document.getElementById("temp-row");
     var clone = temp.content.cloneNode(true);
     let imageurl = "/images/" + selectedProduct.imageurl;
     const stringImageUrl = JSON.stringify(imageurl);
@@ -23,13 +23,13 @@ drawSelectedProduct = (selectedProduct) => {
     clone.querySelector(".itemNumber").innerText = selectedProduct.p;
     document.getElementsByTagName("tbody")[0].appendChild(clone);
 }
-totalPriceFunc = (selectedProducts) => {
+totalPriceFunc = async (selectedProducts) => {
     document.getElementById("itemCount").innerText = selectedProducts.length;
     let totalPrice = 0;
     for (let i = 0; i < selectedProducts.length; i++) {
         totalPrice += selectedProducts[i].price;
     }
-    document.getElementById("totalAmount").innerText = totalPrice;
+     document.getElementById("totalAmount").innerText = totalPrice;
 
 }
 placeOrder = async () => {
