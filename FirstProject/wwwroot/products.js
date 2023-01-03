@@ -143,7 +143,7 @@ addToCart = (id) => {
     let counter = 0;
     for (let i = 0; i < products.length; i++) {
         if (products[i].productId == id) {
-            p = p[i];
+            p = products[i];
             if (sessionStorage.getItem("selectedProducts")) {
                 const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
               
@@ -163,7 +163,7 @@ addToCart = (id) => {
 
     }
     document.getElementById("ItemsCountText").innerHTML = counter;
-    alert(`המוצר${p.productName} נוסף בהצלחה`)
+    alert(`המוצר${p.productName} נוסף בהצלחה לסל`)
 }
 
 document.addEventListener("load", start());
