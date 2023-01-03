@@ -89,21 +89,21 @@ placeOrder = async () => {
 
 deleteProduct = (id) => {
     var newArr = [];
+    var a = document.getElementsByClassName("item-row");
     const productsJson = sessionStorage.getItem("products");
     const products = JSON.parse(productsJson);
     const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
     for (let i = 0; i < allSelectedProducts1.length; i++) {
         if (allSelectedProducts1[i].productId != id) {
-            newArr.push(allSelectedProducts1[i]);
+            newArr.push(allSelectedProducts1[i]);   
         }
+        else
+         a[i].remove();
     }
     
     sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
 
-        
-    
-
-    load();
+  
 }
 
 
