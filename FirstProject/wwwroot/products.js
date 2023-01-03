@@ -136,14 +136,14 @@ removeProducts = () => {
 }
 
 addToCart = (id) => {
-
+    var p;
     console.log(id);
     const productsJson = sessionStorage.getItem("products");
     const products = JSON.parse(productsJson);
     let counter = 0;
     for (let i = 0; i < products.length; i++) {
         if (products[i].productId == id) {
-            
+            p = p[i];
             if (sessionStorage.getItem("selectedProducts")) {
                 const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
               
@@ -163,7 +163,7 @@ addToCart = (id) => {
 
     }
     document.getElementById("ItemsCountText").innerHTML = counter;
-
+    alert(`המוצר${p.productName} נוסף בהצלחה`)
 }
 
 document.addEventListener("load", start());
