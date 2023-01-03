@@ -1,24 +1,24 @@
 ﻿load = () => {
     const selectedProductsJson = sessionStorage.getItem("selectedProducts");
     const selectedProducts = JSON.parse(selectedProductsJson);
-     drawSelectedProducts(selectedProducts)
-     totalPriceFunc(selectedProducts);
+    drawSelectedProducts(selectedProducts)
+    totalPriceFunc(selectedProducts);
     console.log(selectedProducts);
 }
-drawSelectedProducts =  (selectedProducts) => {
+drawSelectedProducts = (selectedProducts) => {
     console.log(selectedProducts)
     for (let i = 0; i < selectedProducts.length; i++) {
-         drawSelectedProduct(selectedProducts[i]);
+        drawSelectedProduct(selectedProducts[i]);
     }
 }
 drawSelectedProduct = (selectedProduct) => {
 
-    const temp =  document.getElementById("hi");
+    const temp = document.getElementById("hi");
     const clone = temp.content.cloneNode(true);
     let imageurl = "/images/" + selectedProduct.imageurl;
     const stringImageUrl = JSON.stringify(imageurl);
     console.log(JSON.stringify(imageurl));
-    clone.querySelector(".image").style.backgroundImage = `url(${ stringImageUrl })`;
+    clone.querySelector(".image").style.backgroundImage = `url(${stringImageUrl})`;
     clone.querySelector(".itemName").innerText = selectedProduct.productName;
     clone.querySelector(".itemNumber").innerText = selectedProduct.p;
     document.getElementsByTagName("tbody")[0].appendChild(clone);
@@ -29,7 +29,7 @@ totalPriceFunc = async (selectedProducts) => {
     for (let i = 0; i < selectedProducts.length; i++) {
         totalPrice += selectedProducts[i].price;
     }
-     document.getElementById("totalAmount").innerText = totalPrice;
+    document.getElementById("totalAmount").innerText = totalPrice;
 
 }
 placeOrder = async () => {
@@ -40,7 +40,7 @@ placeOrder = async () => {
     orderItems = [];
     orderItemsJson = sessionStorage.getItem("selectedProducts");
     orderItemsParse = JSON.parse(orderItemsJson);
-   
+
 
     console.log(orderItemsParse)
     for (let i = 0; i < orderItemsParse.length; i++) {
@@ -51,7 +51,7 @@ placeOrder = async () => {
             }
         }
 
-        let orderItem={
+        let orderItem = {
             "ProductId": orderItemsParse[i].id,
             "Amount": amount
         }
@@ -61,7 +61,7 @@ placeOrder = async () => {
         "Date": new Date(),
         "Price": price,
         "UserId": userId,
-        "OrderItems":orderItems
+        "OrderItems": orderItems
     }
     console.log(order)
     const res = await fetch("https://localhost:44328/api/Order", {
