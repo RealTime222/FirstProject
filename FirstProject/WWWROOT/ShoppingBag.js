@@ -34,29 +34,32 @@ totalPriceFunc = async (selectedProducts) => {
 }
 placeOrder = async () => {
     let price = document.getElementById("totalAmount").innerText;
-    let user = JSON.parse(sessionStorage.getItem("details"))
-    let userParse = user[0].firstName;
-    
-    let userId = userParse.id;
+    let userParse = JSON.parse(sessionStorage.getItem("details"))
+  
+
+    let userId = userParse.userId;
     orderItems = [];
     orderItemsJson = sessionStorage.getItem("selectedProducts");
     orderItemsParse = JSON.parse(orderItemsJson);
-   
+    
 
     console.log(orderItemsParse)
+    
+
     for (let i = 0; i < orderItemsParse.length; i++) {
         let amount = 0;
         for (let j = 0; j < orderItemsParse.length; j++) {
-            if (orderItemsParse[i].id == orderItemsParse[j].ProductId) {
+            if (orderItemsParse[i].productId == orderItemsParse[j].productId) {
                 amount++;
             }
         }
 
-        let orderItem={
-            "ProductId": orderItemsParse[i].id,
+        let orderItem = {
+            "ProductId": orderItemsParse[i].productId,
             "Amount": amount
         }
         orderItems.push(orderItem);
+
     }
     const order = {
         "Date": new Date(),
@@ -65,7 +68,7 @@ placeOrder = async () => {
         "OrderItems":orderItems
     }
     console.log(order)
-    const res = await fetch("https://localhost:44328/api/Order", {
+    const res = await fetch("https://localhost:44363/api/Order", {
         headers: { "content-type": "application/json;" },
         method: 'POST',
         body: JSON.stringify(order)
@@ -78,7 +81,7 @@ placeOrder = async () => {
         return;
     }
     const data = await res.json();
-    alert("the order complited");
+    alert("the order complited!!!!!!!!!!!");
 
 }
 
