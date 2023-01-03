@@ -1,4 +1,4 @@
-﻿load = async () => {
+﻿start = async () => {
     await getProducts();
     await getCategories();
     
@@ -126,22 +126,19 @@ filterProducts = async () => {
 }
 
 removeProducts = () => {
-    
-
     var cards = document.getElementsByClassName("card");
     console.log(cards);
     for (var i = cards.length; i > 0; i--) {
         console.log(cards[0]);
         cards[0].remove();
     }
-
-
-
 }
 
 addToCart = () => {
+
+    sessionStorage.setItem('products', JSON.stringify())
     alert("added!!")
 }
 
-document.addEventListener("load", load());
+document.addEventListener("load", start());
 
