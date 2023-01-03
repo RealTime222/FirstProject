@@ -142,7 +142,7 @@ addToCart = (id) => {
     const products = JSON.parse(productsJson);
     let counter = 0;
     for (let i = 0; i < products.length; i++) {
-        if (products[i].id == id) {
+        if (products[i].productId == id) {
             console.log(products[i])
             if (sessionStorage.getItem("selectedProducts")) {
                 const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
