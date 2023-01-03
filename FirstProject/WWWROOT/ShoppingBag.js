@@ -13,7 +13,7 @@ drawSelectedProducts =  (selectedProducts) => {
 }
 drawSelectedProduct = (selectedProduct) => {
 
-    const temp =  document.getElementById("hi");
+    const temp = document.getElementById("temp-row");
     const clone = temp.content.cloneNode(true);
     let imageurl = "/images/" + selectedProduct.imageurl;
     const stringImageUrl = JSON.stringify(imageurl);
@@ -81,4 +81,4 @@ placeOrder = async () => {
 
 }
 
-document.addEventListener("load", load());
+//document.addEventListener("load", load());

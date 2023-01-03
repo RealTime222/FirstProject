@@ -50,7 +50,7 @@ p.description{
     height:110px;
 }
 .bar::before {
-    content: 'my jewelry store';
+    content: 'my watch store';
     color: white;
     /* display: inline-block; */
     position: absolute;
