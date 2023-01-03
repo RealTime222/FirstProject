@@ -69,7 +69,8 @@ drawProduct = (product) => {
     clone.querySelector("h1").innerText = product.productName;
     clone.querySelector(".price").innerText = product.price;
     clone.querySelector(".description").innerText = product.description;
-    clone.querySelector("img").src = "/images/"+ product.imageUrl;
+    clone.querySelector("img").src = "/images/" + product.imageUrl;
+    clone.querySelector("button").setAttribute("value", product.productId);
     document.getElementById("PoductList").appendChild(clone);
 }
 drawCategories = (data) => {
