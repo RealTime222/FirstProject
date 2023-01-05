@@ -14,22 +14,33 @@ namespace FirstProject.Controllers
     public class UserController : ControllerBase
     {
         private readonly Ilogic _Iservice;
+        ILogger<UserController> _logger;
 
-        
-        public UserController(Ilogic service)
+
+        public UserController(Ilogic service, ILogger<UserController> logger)
         {
             _Iservice = service;
+            _logger = logger;
         }
         // GET: api/<UserController>
         [HttpGet]
         public async Task<user?> Get([FromQuery] string email, [FromQuery] int password)
         {
-            user theUser = await _Iservice.getUser(password, email);
-            if (theUser != null)
-                return theUser;
-
-            else
+            _logger.LogInformation("user" + email + "failed to log in");
+            try
+            {
+                user theUser = await _Iservice.getUser(password, email);
+                if (theUser != null)
+                    return theUser;
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error Happenned!!!", ex.Message, ex.StackTrace);
                 return null;
+            }
+
 
 
 
