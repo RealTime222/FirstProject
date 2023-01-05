@@ -1,8 +1,10 @@
 using data_layer;
 using logic_layer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+var cs = builder.Configuration.GetConnectionString("home");
 
 // Add services to the container.
 
@@ -22,8 +24,7 @@ builder.Services.AddScoped<IlogicOrder, logicOrder>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<WebApiProjectContext>(options => options.UseSqlServer
-("Data Source=DESKTOP-UC03848;Initial Catalog=web_api_project;Integrated Security=True;Pooling = false"));
+builder.Services.AddDbContext<WebApiProjectContext>(options => options.UseSqlServer(cs));
 
 
 var app = builder.Build();
