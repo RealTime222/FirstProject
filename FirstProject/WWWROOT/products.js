@@ -40,8 +40,8 @@ getCategories = async () => {
     }
 }
 fillProductsInCategory = (data) => {
-    var products1 = sessionStorage.getItem("products");
-    var products = JSON.parse(products1);
+    const products1 = sessionStorage.getItem("products");
+    const products = JSON.parse(products1);
     console.log(products);
     console.log(data);
     for (var category = 0; category < data.length; category++) {
@@ -63,8 +63,8 @@ drawProducts = (data) => {
 }
 drawProduct = (product) => {
     //console.log(product);
-    var temp = document.getElementById("temp-card");
-    var clone = temp.content.cloneNode(true);
+    const temp = document.getElementById("temp-card");
+    const clone = temp.content.cloneNode(true);
     //console.log(product.name);
     clone.querySelector("h1").innerText = product.productName;
     clone.querySelector(".price").innerText = product.price;
@@ -80,8 +80,8 @@ drawCategories = (data) => {
 }
 drawCategory = (category) => {
     //console.log(category);
-    var temp = document.getElementById("temp-category");
-    var clone = temp.content.cloneNode(true);
+    const temp = document.getElementById("temp-category");
+    const clone = temp.content.cloneNode(true);
     clone.querySelector(".OptionName").innerText = category.categoryName;
     clone.querySelector(".Count").innerText = `(${category.products.length})`;
     clone.querySelector(".opt").value = category.categoryId;
@@ -89,16 +89,16 @@ drawCategory = (category) => {
 
 }
 filterProducts = async () => {
-    var name = document.getElementById("nameSearch").value;
+    const name = document.getElementById("nameSearch").value;
     
-    var minPrice = document.getElementById("minPrice").value;
+    const minPrice = document.getElementById("minPrice").value;
     console.log(minPrice);
-    var maxPrice = document.getElementById("maxPrice").value;
-    var categoryList = document.getElementsByClassName("opt");
-    var start = 1;
-    var limit = 20;
-    var direction = "ASC";
-    var orderBy = "price";
+    const maxPrice = document.getElementById("maxPrice").value;
+    const categoryList = document.getElementsByClassName("opt");
+    const start = 1;
+    const limit = 20;
+    const direction = "ASC";
+    const orderBy = "price";
     console.log(categoryList[0].checked);
     var categoryIds = "";
     for (var i = 0; i < categoryList.length; i++) {
@@ -127,7 +127,7 @@ filterProducts = async () => {
 }
 
 removeProducts = () => {
-    var cards = document.getElementsByClassName("card");
+    const cards = document.getElementsByClassName("card");
     console.log(cards);
     for (var i = cards.length; i > 0; i--) {
         console.log(cards[0]);
@@ -136,18 +136,18 @@ removeProducts = () => {
 }
 
 addToCart = (id) => {
-    var p;
+    const productToAdd;
     console.log(id);
     const productsJson = sessionStorage.getItem("products");
     const products = JSON.parse(productsJson);
     let counter = 0;
     for (let i = 0; i < products.length; i++) {
         if (products[i].productId == id) {
-            p = products[i];
+            productToAdd = products[i];
             if (sessionStorage.getItem("selectedProducts")) {
                 const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
               
-                allSelectedProducts1.push(products[i]);
+                allSelectedProducts1.push(productToAdd);
                 
                 counter = allSelectedProducts1.length;
                 sessionStorage.setItem("selectedProducts", JSON.stringify(allSelectedProducts1));
@@ -155,7 +155,7 @@ addToCart = (id) => {
             }
             else {
                 let allSelectedProducts = []
-                allSelectedProducts.push(products[i])
+                allSelectedProducts.push(productToAdd)
                 counter = 1;
                 sessionStorage.setItem("selectedProducts", JSON.stringify(allSelectedProducts))
             }
@@ -163,7 +163,7 @@ addToCart = (id) => {
 
     }
     document.getElementById("ItemsCountText").innerHTML = counter;
-    alert(`המוצר${p.productName} נוסף בהצלחה לסל`)
+    alert(`המוצר${productToAdd.productName} נוסף בהצלחה לסל`)
 }
 
 document.addEventListener("load", start());
