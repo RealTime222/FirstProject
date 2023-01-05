@@ -63,10 +63,10 @@ placeOrder = async () => {
 
     }
     const order = {
-        "Date": new Date(),
-        "Price": price,
-        "UserId": userId,
-        "OrderItems":orderItems
+        "date": new Date(),
+        "price": price,
+        "userId": userId,
+        "orderItems":orderItems
     }
     console.log(order)
     const res = await fetch("https://localhost:44363/api/Order", {
