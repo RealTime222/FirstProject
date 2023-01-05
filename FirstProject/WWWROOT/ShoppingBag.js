@@ -88,10 +88,10 @@ placeOrder = async () => {
 
 
 deleteProduct = (id) => {
-    var ans = confirm("האם למחוק פריט זה?")
+    const ans = confirm("האם למחוק פריט זה?")
     if (ans) {
             var newArr = [];
-            var a = document.getElementsByClassName("item-row");
+        const a = document.getElementsByClassName("item-row");
             //const productsJson = sessionStorage.getItem("products");
             //const products = JSON.parse(productsJson);
             const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
