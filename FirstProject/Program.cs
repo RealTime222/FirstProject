@@ -2,12 +2,13 @@ using data_layer;
 using logic_layer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 var cs = builder.Configuration.GetConnectionString("home");
 
 // Add services to the container.
-
+builder.Host.UseNLog();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<Idata, data>();
