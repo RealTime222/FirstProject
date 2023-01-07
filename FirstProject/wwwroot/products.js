@@ -136,7 +136,7 @@ removeProducts = () => {
 }
 
 addToCart = (id) => {
-    const productToAdd;
+    var productToAdd;
     console.log(id);
     const productsJson = sessionStorage.getItem("products");
     const products = JSON.parse(productsJson);
