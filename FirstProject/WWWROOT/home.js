@@ -1,6 +1,10 @@
-﻿ const conect = async() =>{
+﻿
+
+
+
+const conect = async () => {
   
-   //  alert("aaa")
+    alert("aaa")
     
      const email = document.getElementById("email").value;
      const password = document.getElementById("password").value;
