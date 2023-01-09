@@ -82,17 +82,17 @@ placeOrder = async () => {
         return;
     }
     const data = await res.json();
-    const a = document.getElementsByClassName("item-row");
-    const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
-    for (var i = 0; i < allSelectedProducts1.length+1; i++) {
-        a[i].remove();
-    }
-    const newArr = [];
-    sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
-    //for (let i = 0; i < orderItemsParse.length; i++) {
-    //   orderItemsParse[i].remove();
-
+    //const a = document.getElementsByClassName("item-row");
+    //const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
+    //for (var i = 0; i < allSelectedProducts1.length+1; i++) {
+    //    a[i].remove();
     //}
+    //const newArr = [];
+    //sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
+    for (let i = 0; i < orderItemsParse.length; i++) {
+        deleteAfterOrder( orderItemsParse[i].productId)
+
+    }
     alert("the order complited!!!!!!!!!!!");
 
 }
@@ -120,6 +120,27 @@ deleteProduct = (id) => {
             sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
     
             }
+}
+
+deleteAfterOrder = (id) => {
+    var newArr = [];
+    const a = document.getElementsByClassName("item-row");
+  ;
+    const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
+    for (let i = 0; i < allSelectedProducts1.length; i++) {
+        if (allSelectedProducts1[i].productId != id) {
+            newArr.push(allSelectedProducts1[i]);
+        }
+        else {
+            a[i].remove();
+            deletedProduct = a[i];
+        }
+
+    }
+
+    sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
+
+
 }
 
 
