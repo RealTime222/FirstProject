@@ -4,7 +4,7 @@
 
 const conect = async () => {
   
-    alert("aaa")
+    alert("התהליך עלול לקחת מספר רגעים")
     
      const email = document.getElementById("email").value;
      const password = document.getElementById("password").value;
