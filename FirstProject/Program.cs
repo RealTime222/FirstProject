@@ -10,7 +10,7 @@ var cs = builder.Configuration.GetConnectionString("home");
 // Add services to the container.
 builder.Host.UseNLog();
 builder.Services.AddControllers();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<Idata, data>();
 builder.Services.AddScoped<Ilogic, logic>();
 builder.Services.AddScoped<IdataProduct, dataProduct>();
