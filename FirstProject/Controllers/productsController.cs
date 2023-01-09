@@ -1,6 +1,8 @@
 ﻿using logic_layer;
 using Microsoft.AspNetCore.Mvc;
 using entities;
+using AutoMapper;
+using DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +13,13 @@ namespace FirstProject.Controllers
     public class productsController : ControllerBase
     {
         private readonly IlogicProduct _Iservice;
+        private readonly IMapper _IMapper;
 
 
-        public productsController(IlogicProduct service)
+        public productsController(IlogicProduct service, IMapper mapper)
         {
             _Iservice = service;
+            _IMapper = mapper;
         }
 
      
@@ -29,7 +33,7 @@ namespace FirstProject.Controllers
             [FromQuery] string? orderBy="price", [FromQuery] string? dir= "ASC")
         {
             List<Product> p = await _Iservice.getProducts(CategoryId, name, minPrice, maxPrice, start,end, orderBy,dir);
-
+            //List<ProductDTO> p2 =  _IMapper.Map<List<Product>,List<ProductDTO>>(p);
             if (p.Count() != 0)
                 return p;
 
