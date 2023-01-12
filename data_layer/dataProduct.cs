@@ -21,11 +21,11 @@ namespace data_layer
 
         {
             
-                var query =  _WebApiProjectContext.Products.Where(product => (name == null ? (true) : (product.ProductName.Contains(name)))
+                var query =  _WebApiProjectContext.Products.Where(product =>  (name == null ? (true) : (product.ProductName.Contains(name)))
                  && ((maxPrice == null) ? (true) : (product.Price <= maxPrice))
                   && ((minPrice == null) ? (true) : (product.Price >= minPrice))
                  && (CategoryId.Length == 0) ? (true) : (CategoryId.Contains(product.CategoryId))
-                 ).OrderBy(product => orderBy);
+                 ).OrderBy(product => orderBy).Include(p=>p.Category);
                 Console.WriteLine(query);
 
                 List<Product> products = await query.ToListAsync();
@@ -33,8 +33,7 @@ namespace data_layer
                 return products;
 
            
-            //products = await _WebApiProjectContext.Products.ToListAsync<Product>();
-            //return products;
+           
         }
     }
 }
