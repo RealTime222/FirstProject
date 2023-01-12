@@ -1,6 +1,7 @@
 ﻿using entities;
 using Microsoft.AspNetCore.Mvc;
 using logic_layer;
+using AutoMapper;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,11 +13,12 @@ namespace FirstProject.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IlogicOrder _Iservice;
+        private readonly IMapper _imapper;
 
-
-        public OrderController(IlogicOrder service)
+        public OrderController(IlogicOrder service, IMapper mapper)
         {
             _Iservice = service;
+            _imapper = mapper;
         }
         // GET: api/<orderItem>
         [HttpGet]
