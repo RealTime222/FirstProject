@@ -24,7 +24,7 @@ namespace data_layer
         public async Task<List<user>> getData()
 
         {
-          users = await _WebApiProjectContext.Users.ToListAsync<user>();
+          users = await _WebApiProjectContext.Users.Include(p=>p.Orders).ToListAsync<user>();
             return users; 
         }
 
