@@ -21,7 +21,7 @@ namespace data_layer
         public async Task<List<Category>> getData()
 
         {
-            categories = await _WebApiProjectContext.Categories.ToListAsync<Category>();
+            categories = await _WebApiProjectContext.Categories.Include(p=>p.Products).ToListAsync<Category>();
                
             return categories;
         }
