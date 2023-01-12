@@ -26,16 +26,18 @@ namespace FirstProject.Controllers
 
         // GET: api/<productsController>
         [HttpGet]
-        public async Task<List<Product>> Get(
+        public async Task<IEnumerable<ProductDTO>> Get(
             [FromQuery] int[]? CategoryId,[FromQuery] string? name, 
             [FromQuery] int? minPrice, [FromQuery] int? maxPrice,
             [FromQuery] int? start, [FromQuery] int? end, 
             [FromQuery] string? orderBy="price", [FromQuery] string? dir= "ASC")
         {
-            List<Product> p = await _Iservice.getProducts(CategoryId, name, minPrice, maxPrice, start,end, orderBy,dir);
-            //List<ProductDTO> p2 =  _IMapper.Map<List<Product>,List<ProductDTO>>(p);
+          
+            IEnumerable<Product> p = await _Iservice.getProducts(CategoryId, name, minPrice, maxPrice, start,end, orderBy,dir);
+           
+            IEnumerable<ProductDTO> p2 =  _IMapper.Map<IEnumerable<Product>,IEnumerable<ProductDTO>>(p);
             if (p.Count() != 0)
-                return p;
+                return p2;
 
             else
                 return null ;
