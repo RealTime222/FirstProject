@@ -25,6 +25,9 @@ namespace DTO
               dest.numOfItems, opt => opt.MapFrom(p => p.OrderItems.Count)).ForMember
               (dest=>dest.userName, opt=>opt.MapFrom(p=>p.User.FirstName));
 
+            CreateMap<user, UserDTO>().ForMember(dest =>
+                dest.numOfOrders, opt => opt.MapFrom(p => p.Orders.Count));
+
 
         }
     }
