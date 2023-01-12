@@ -1,4 +1,6 @@
-﻿using entities;
+﻿using AutoMapper;
+using DTO;
+using entities;
 using logic_layer;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,20 +13,24 @@ namespace FirstProject.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly IlogicCategory _Iservice;
-        public CategoryController(IlogicCategory service)
+        private readonly IMapper _imapper;
+        public CategoryController(IlogicCategory service, IMapper mapper)
         {
             _Iservice = service;
+            _imapper = mapper;
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> Get()
+        public async Task<IEnumerable<Category>> Get()
         {
-            List<Category> p =await _Iservice.getCategories();
+            IEnumerable<Category> p =await _Iservice.getCategories();
+            IEnumerable<CategoryDTO> p2 = _imapper.Map < IEnumerable<Category>,IEnumerable<CategoryDTO>>(p);
+
             if (p.Count() != 0)
-                return Ok(p);
+                return p;
 
             else
-                return NotFound();
+                return null;
         }
 
         // GET api/<CategoryController>/5
