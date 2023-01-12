@@ -6,6 +6,8 @@ using System.Text.Json;
 
 using logic_layer;
 using entities;
+using AutoMapper;
+using DTO;
 
 namespace FirstProject.Controllers
 {
@@ -15,23 +17,26 @@ namespace FirstProject.Controllers
     {
         private readonly Ilogic _Iservice;
         ILogger<UserController> _logger;
+        private readonly IMapper _Imapper;
 
 
-        public UserController(Ilogic service, ILogger<UserController> logger)
+        public UserController(Ilogic service, ILogger<UserController> logger,IMapper mapper)
         {
             _Iservice = service;
             _logger = logger;
+            _Imapper= mapper;
         }
         // GET: api/<UserController>
         [HttpGet]
-        public async Task<user?> Get([FromQuery] string email, [FromQuery] int password)
+        public async Task<UserDTO?> Get([FromQuery] string email, [FromQuery] int password)
         {
             _logger.LogInformation("user" + email + "failed to log in");
             try
             {
                 user theUser = await _Iservice.getUser(password, email);
+                UserDTO user = _Imapper.Map<user,UserDTO>(theUser);
                 if (theUser != null)
-                    return theUser;
+                    return user;
                 else
                     return null;
             }
