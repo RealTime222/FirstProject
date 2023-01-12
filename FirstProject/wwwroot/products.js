@@ -83,7 +83,7 @@ drawCategory = (category) => {
     const temp = document.getElementById("temp-category");
     const clone = temp.content.cloneNode(true);
     clone.querySelector(".OptionName").innerText = category.categoryName;
-    clone.querySelector(".Count").innerText = `(${category.products.length})`;
+    clone.querySelector(".Count").innerText = `(${category.numOfProducts})`;
     clone.querySelector(".opt").value = category.categoryId;
     document.getElementById("categoryList").appendChild(clone);
 

@@ -21,16 +21,15 @@ namespace FirstProject.Controllers
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<IEnumerable<Category>> Get()
+        public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
             IEnumerable<Category> p =await _Iservice.getCategories();
-            IEnumerable<CategoryDTO> p2 = _imapper.Map < IEnumerable<Category>,IEnumerable<CategoryDTO>>(p);
-
+            IEnumerable<CategoryDTO> p2 = _imapper.Map<IEnumerable<Category>,IEnumerable<CategoryDTO>> (p);
             if (p.Count() != 0)
-                return p;
+                return Ok(p2);
 
             else
-                return null;
+                return NotFound();
         }
 
         // GET api/<CategoryController>/5
