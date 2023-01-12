@@ -17,6 +17,11 @@ namespace DTO
             
             CreateMap<Product, ProductDTO>().ForMember(dest =>
             dest.CategoryName, opt => opt.MapFrom(p => p.Category.CategoryName));
+
+            CreateMap<Category, CategoryDTO>().ForMember(dest =>
+                dest.numOfProducts, opt => opt.MapFrom(p => p.Products.Count));
+
+
         }
     }
 }
