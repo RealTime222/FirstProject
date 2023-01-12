@@ -14,7 +14,7 @@ const conect = async () => {
      if (response.ok) {
          const data = await response.json();
          // data = (user)data[0];
-         alert("ברוך הבא " + data.firstName);
+         alert("ברוך הבא " + data.firstName + " ביצעת בעבר " + data.numOfOrders +"הזמנות ");
          sessionStorage.setItem('details', JSON.stringify(data))
        
        
