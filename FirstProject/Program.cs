@@ -1,4 +1,5 @@
 using data_layer;
+using FirstProject;
 using logic_layer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ builder.Services.AddScoped<IlogicCategory, logicCategory>();
 builder.Services.AddScoped<IdataCategory, dataCategory>();
 builder.Services.AddScoped<IdataOrder, dataOrder>();
 builder.Services.AddScoped<IlogicOrder, logicOrder>();
+builder.Services.AddScoped<IdataRating, dataRating>();
+//builder.Services.AddScoped<IlogicRating, logicRating>();
 
 
 
