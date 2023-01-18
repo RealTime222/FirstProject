@@ -1,7 +1,7 @@
 ﻿using data_layer;
 using entities;
 
-namespace FirstProject
+namespace logic_layer
 {
     public class logicRating : IlogicRating
     {

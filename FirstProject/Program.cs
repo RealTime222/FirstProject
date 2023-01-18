@@ -21,7 +21,7 @@ builder.Services.AddScoped<IdataCategory, dataCategory>();
 builder.Services.AddScoped<IdataOrder, dataOrder>();
 builder.Services.AddScoped<IlogicOrder, logicOrder>();
 builder.Services.AddScoped<IdataRating, dataRating>();
-//builder.Services.AddScoped<IlogicRating, logicRating>();
+builder.Services.AddScoped<IlogicRating, logicRating>();
 
 
 
@@ -33,6 +33,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();
+app.UseCacheMiddleware();
+app.Run(async (context) =>
+{
+    await context.Response.WriteAsync("hello");
+});
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

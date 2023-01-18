@@ -1,6 +1,6 @@
 ﻿using entities;
 
-namespace FirstProject
+namespace logic_layer
 {
     public interface IlogicRating
     {
