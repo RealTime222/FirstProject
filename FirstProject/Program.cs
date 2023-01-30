@@ -33,7 +33,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();
-app.UseCacheMiddleware();
+app.UseRatingMiddleware();
 //app.Run(async (context) =>
 //{
 //    //await context.Response.WriteAsync("hello");
