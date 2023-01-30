@@ -34,10 +34,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 app.UseCacheMiddleware();
-app.Run(async (context) =>
-{
-    await context.Response.WriteAsync("hello");
-});
+//app.Run(async (context) =>
+//{
+//    //await context.Response.WriteAsync("hello");
+//    Console.WriteLine("in run");
+//});
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
