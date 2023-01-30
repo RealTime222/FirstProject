@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 namespace FirstProject
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class ErrorHandlingMiddleware
+    public class ErrorMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
+        public ErrorMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
-        public async Task Invoke(HttpContext httpContext, ILogger<ErrorHandlingMiddleware> logger)
+        public async Task Invoke(HttpContext httpContext, ILogger<ErrorMiddleware> logger)
         {
 
             try
@@ -33,11 +33,11 @@ namespace FirstProject
     }
 
     // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class ErrorHandlingMiddlewareExtensions
+    public static class ErrorMiddlewareExtensions
     {
-        public static IApplicationBuilder UseErrorHandlingMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseErrorMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<ErrorHandlingMiddleware>();
+            return builder.UseMiddleware<ErrorMiddleware>();
         }
     }
 }

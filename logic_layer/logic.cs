@@ -14,7 +14,8 @@ namespace logic_layer
         }
         public async Task<user> getUser(int password, string email)
         {
-
+            //var m = 5;
+            //var ans = m / 0;
             List<user> users =await _Idata.getData();
            
             for (int i = 0; i < users.Count(); i++)

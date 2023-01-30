@@ -35,11 +35,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 app.UseRating();
-//app.Run(async (context) =>
-//{
-//    //await context.Response.WriteAsync("hello");
-//    Console.WriteLine("in run");
-//});
+app.UseErrorMiddleware();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
