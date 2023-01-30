@@ -10,11 +10,11 @@ using entities;
 namespace FirstProject
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class CacheMiddleware
+    public class RatingMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public CacheMiddleware(RequestDelegate next )
+        public RatingMiddleware(RequestDelegate next )
         {
             _next = next;
         }
@@ -28,7 +28,7 @@ namespace FirstProject
                r.Method = httpContext.Request.Method.ToString();
 	           r.Path = httpContext.Request.Path.ToString();
                r.Referer = httpContext.Request.RouteValues.ToString();
-               r.UserAgent = httpContext.User.ToString();
+               r.UserAgent = httpContext.Request.Headers.UserAgent.ToString();
                r.RecordDate = DateTime.Now;
 	            await _service.addData(r);
 	                
@@ -44,11 +44,11 @@ namespace FirstProject
     }
 
     // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class CacheMiddlewareExtensions
+    public static class RatingExtensions
     {
-        public static IApplicationBuilder UseCacheMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseRating(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<CacheMiddleware>();
+            return builder.UseMiddleware<RatingMiddleware>();
         }
     }
 }

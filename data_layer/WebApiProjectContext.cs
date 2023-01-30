@@ -27,7 +27,7 @@ public partial class WebApiProjectContext : DbContext
     public virtual DbSet<user> Users { get; set; }
     public virtual DbSet<Rating> Rating { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=TICHNUT;Database=web_api_project;Trusted_Connection=True;Encrypt=false");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=DESKTOP-UC03848;Database=web_api_project;Trusted_Connection=True;Encrypt=false");
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

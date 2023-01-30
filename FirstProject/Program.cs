@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NLog.Web;
 
+
 var builder = WebApplication.CreateBuilder(args);
 var cs = builder.Configuration.GetConnectionString("home");
 
@@ -20,8 +21,8 @@ builder.Services.AddScoped<IlogicCategory, logicCategory>();
 builder.Services.AddScoped<IdataCategory, dataCategory>();
 builder.Services.AddScoped<IdataOrder, dataOrder>();
 builder.Services.AddScoped<IlogicOrder, logicOrder>();
-builder.Services.AddScoped<IdataRating, dataRating>();
 builder.Services.AddScoped<IlogicRating, logicRating>();
+builder.Services.AddScoped<IdataRating, dataRating>();
 
 
 
@@ -33,7 +34,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();
-app.UseRatingMiddleware();
+app.UseRating();
 //app.Run(async (context) =>
 //{
 //    //await context.Response.WriteAsync("hello");
