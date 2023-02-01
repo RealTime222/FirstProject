@@ -6,5 +6,6 @@ namespace logic_layer
     {
         Task<List<Product>> getProducts(int[]? CategoryId, string? name,
          int? minPrice, int? maxPrice, int? start, int? end, string? orderBy = "price", string? dir = "ASC");
+         Product[] GetProductsByIDs(int[]? ProductIds);
     }
 }

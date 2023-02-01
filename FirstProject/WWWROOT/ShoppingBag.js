@@ -65,8 +65,7 @@ placeOrder = async () => {
         price += orderItemsParse[i].price;
 
     }
-    if (priceFromJs != price)
-        alert("שגיאת בסכום ההזמנה")
+   
     else {
         const order = {
             "date": new Date().getDate(),
