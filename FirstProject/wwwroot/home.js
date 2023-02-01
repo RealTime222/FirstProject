@@ -8,22 +8,21 @@ const conect = async () => {
     
      const email = document.getElementById("email").value;
      const password = document.getElementById("password").value;
-     //alert(email);
-     //alert(password)
+    
     const response = await fetch(`https://localhost:44363/api/user?email=${email}&password=${password}`);
     if (response.status != 200) {
         alert("משתמש לא קיים")
     }
      if (response.ok) {
          const data = await response.json();
-         // data = (user)data[0];
+        
          alert("ברוך הבא " + data.firstName + " ביצעת בעבר " + data.numOfOrders +"הזמנות ");
          sessionStorage.setItem('details', JSON.stringify(data))
        
        
 
          window.location.href = "welcome.html"
-         //alert(data);
+        
 
       
      }
@@ -63,47 +62,44 @@ const newUser = () => {
         }
 
     }).then(res => {
-        if (res.status!= 200) {
+        if (res.status != 200) {
+
             alert("שגיאה בפרטי המשתמש שים לב שהאיממיל תקין ושאורך השם הוא בין 2 ל 15 תווים")
-                        return res.json
+            return res.json
         }
-        else
+        else {
             alert("משתמש נוסף בהצלחה!!")
+            window.location.href = "user.html"
+        }
+            
 
     })
         .then(data => {
+
             return data;
         })
         
 
 }
 
-const checkEmail = () => {
-    let tmp = document.getElementById("email1").value;
-  
-    fetch("api/password", {
-        method: "post",
-        body: JSON.stringify(tmp),
-        headers: {
-            "Content-Type": "application/json"
-        }
+const checkPassword = async () => {
 
-    }).then(res => {
-       
-        if (res.status == 500) {
-            alert("שגיאה ")
-            return res.json
-        }
-        else {
-            let res2 = res.json
-            alert(res2)
-            document.getElementById("aa").status = res;
-        }
-            
-
+    const password = document.getElementById("password1").value;
+    const res = await fetch("https://localhost:44363/api/password", {
+        headers: { "content-type": "application/json" },
+        method: 'POST',
+        body: JSON.stringify(password)
     })
-        .then(data => {
-            return data;
-        })
+    if (res.ok) {
+        let res2 = await res.json()
+        document.getElementById("aa").value = res2
+        document.getElementById("password").innerText = `password strength: ${res2}`;
+        
+    }
+    else {
+        alert("password is not strong!")
+    }
+
+
 
 }
