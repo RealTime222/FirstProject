@@ -34,7 +34,7 @@ totalPriceFunc = async (selectedProducts) => {
 
 }
 placeOrder = async () => {
-    let price = document.getElementById("totalAmount").innerText;
+    let priceFromJs = document.getElementById("totalAmount").innerText;
     let userParse = JSON.parse(sessionStorage.getItem("details"))
   
 
@@ -46,8 +46,9 @@ placeOrder = async () => {
 
     console.log(orderItemsParse)
     
-
+    var price = 0;
     for (let i = 0; i < orderItemsParse.length; i++) {
+
         let amount = 0;
         for (let j = 0; j < orderItemsParse.length; j++) {
             if (orderItemsParse[i].productId == orderItemsParse[j].productId) {
@@ -55,46 +56,47 @@ placeOrder = async () => {
             }
         }
 
+
         let orderItem = {
             "ProductId": orderItemsParse[i].productId,
             "Amount": amount
         }
         orderItems.push(orderItem);
+        price += orderItemsParse[i].price;
 
     }
-    const order = {
-        "date": new Date(),
-        "price": price,
-        "userId": userId,
-        "orderItems":orderItems
-    }
-    console.log(order)
-    const res = await fetch("https://localhost:44363/api/Order", {
-        headers: { "content-type": "application/json;" },
-        method: 'POST',
-        body: JSON.stringify(order)
-    })
+    if (priceFromJs != price)
+        alert("שגיאת בסכום ההזמנה")
+    else {
+        const order = {
+            "date": new Date().getDate(),
+            "price": price,
+            "userId": userId,
+            "OrderItems": orderItems
+        }
+        console.log(order)
+        const res = await fetch("https://localhost:44363/api/Order", {
+            headers: { "content-type": "application/json;" },
+            method: 'POST',
+            body: JSON.stringify(order)
+        })
 
-    if (!res.ok)
-        alert("Error! Try later please!");
-    if (res.status == 204) {
-        alert("no data");
-        return;
-    }
-    const data = await res.json();
-    //const a = document.getElementsByClassName("item-row");
-    //const allSelectedProducts1 = JSON.parse(sessionStorage.getItem("selectedProducts"));
-    //for (var i = 0; i < allSelectedProducts1.length+1; i++) {
-    //    a[i].remove();
-    //}
-    //const newArr = [];
-    //sessionStorage.setItem("selectedProducts", JSON.stringify(newArr));
-    for (let i = 0; i < orderItemsParse.length; i++) {
-        deleteAfterOrder( orderItemsParse[i].productId)
+        if (!res.ok)
+            alert("Error! Try later please!");
+        if (res.status == 204) {
+            alert("no data");
+            return;
+        }
+ 
+      
+        for (let k = 0; k < orderItemsParse.length; k++) {
+            deleteAfterOrder(orderItemsParse[k].productId)
+
+        }
+        alert("the order complited!!!!!!!!!!!");
 
     }
-    alert("the order complited!!!!!!!!!!!");
-
+   
 }
 
 

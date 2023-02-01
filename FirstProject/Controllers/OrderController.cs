@@ -36,10 +36,12 @@ namespace FirstProject.Controllers
 
         // POST api/<orderItem>
         [HttpPost]
-        public async Task<Order> Post([FromBody] Order order)
+        public async Task<ActionResult<Order>> Post([FromBody] Order order)
         {
             Order orderRes = await _Iservice.AddOrder(order);
-            return orderRes;
+            if (orderRes!=null)
+                 return Ok();
+            return null;
         }
 
         // PUT api/<orderItem>/5

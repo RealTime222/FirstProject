@@ -6,7 +6,18 @@ namespace entities {
 
 public partial class Order
 {
-    public int OrderId { get; set; }
+        public Order()
+        {
+            OrderItems = new HashSet<OrderItem>();
+        }
+
+      
+       
+   
+      
+       
+        
+        public int OrderId { get; set; }
 
     public DateTime OrderDate { get; set; }
 
@@ -14,9 +25,9 @@ public partial class Order
 
     public int UserId { get; set; }
 
-    public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();
+    public virtual ICollection<OrderItem> OrderItems { get; set; } 
 
-        [JsonIgnore]
+      
         public virtual user? User { get; set; } = null!;
 }
 }

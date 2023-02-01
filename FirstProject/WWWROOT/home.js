@@ -25,8 +25,11 @@ const conect = async () => {
       
      }
 
-     if (!response.ok)
-         throw new Error(`the connect failed ${response.status}, try again`);
+    if (!response.ok) {
+        alert("משתמש לא רשום!");
+        throw new Error(`the connect failed ${response.status}, try again`);
+
+    }
      if (response.status == 204) {
          alert("no data");
          return;
@@ -41,10 +44,7 @@ const newUser = () => {
     const password2 = document.getElementById("password1").value
     const email2 = document.getElementById("email1").value
 
-    alert(firstName2)
-    alert(lastName2);
-    alert(email2)
-    alert(password2)
+  
     const user = {
         FirstName: firstName2,
         LastName: lastName2,

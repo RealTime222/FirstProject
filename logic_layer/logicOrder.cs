@@ -1,5 +1,6 @@
 ﻿using data_layer;
 using entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace logic_layer
         {
             Order orderRes = await _Idata.AddOrder(order);
             if (orderRes != null)
-                return orderRes;
+                return order;
             return null;
         }
 

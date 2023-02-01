@@ -1,9 +1,10 @@
 using data_layer;
-using FirstProject;
+using FirstProject.Middlewares;
 using logic_layer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NLog.Web;
+
 
 
 var builder = WebApplication.CreateBuilder(args);

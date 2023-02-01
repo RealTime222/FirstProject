@@ -22,5 +22,6 @@ namespace DTO
         public int numOfItems { get; set; }
 
         public string userName { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();
     }
 }
