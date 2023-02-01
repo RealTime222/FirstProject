@@ -26,8 +26,6 @@ public partial class Order
     public int UserId { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } 
-
-      
-        public virtual user? User { get; set; } = null!;
+    public virtual user? User { get; set; } = null!;
 }
 }

@@ -10,7 +10,10 @@ const conect = async () => {
      const password = document.getElementById("password").value;
      //alert(email);
      //alert(password)
-     const response = await fetch(`https://localhost:44363/api/user?email=${email}&password=${password}`);
+    const response = await fetch(`https://localhost:44363/api/user?email=${email}&password=${password}`);
+    if (response.status != 200) {
+        alert("משתמש לא קיים")
+    }
      if (response.ok) {
          const data = await response.json();
          // data = (user)data[0];
@@ -25,8 +28,11 @@ const conect = async () => {
       
      }
 
-     if (!response.ok)
-         throw new Error(`the connect failed ${response.status}, try again`);
+    if (!response.ok) {
+        alert("משתמש לא רשום!");
+        throw new Error(`the connect failed ${response.status}, try again`);
+
+    }
      if (response.status == 204) {
          alert("no data");
          return;
@@ -41,10 +47,7 @@ const newUser = () => {
     const password2 = document.getElementById("password1").value
     const email2 = document.getElementById("email1").value
 
-    alert(firstName2)
-    alert(lastName2);
-    alert(email2)
-    alert(password2)
+  
     const user = {
         FirstName: firstName2,
         LastName: lastName2,
@@ -60,8 +63,8 @@ const newUser = () => {
         }
 
     }).then(res => {
-        if (res.status == 500) {
-            alert("שגיאה בפרטי המשתמש")
+        if (res.status!= 200) {
+            alert("שגיאה בפרטי המשתמש שים לב שהאיממיל תקין ושאורך השם הוא בין 2 ל 15 תווים")
                         return res.json
         }
         else
